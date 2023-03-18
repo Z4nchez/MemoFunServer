@@ -25,10 +25,15 @@ const staticOptions = {
   setHeaders: setHeadersOnStatic
 }
 
+// webs permitidas
+/*const whiteList = [
+  process.env.WEB1
+]*/
+
   /* Midlewares */ 
 app.use(express.static(path.join(__dirname, "public"), staticOptions));
 app.use(express.json());
-app.use(cors()); // Aqui se pueden añadir todas las aplicaciones que tienen acceso al servidor, si no se añade nada por defecto deja entrar a todo el mundo.
+app.use(cors(/*{origin: whiteList}*/)); // Aqui se pueden añadir todas las aplicaciones que tienen acceso al servidor, si no se añade nada por defecto deja entrar a todo el mundo.
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/players", require("./routes/routesPlayer.js"));
 app.use("/api/records", require("./routes/routesRecord.js"));
